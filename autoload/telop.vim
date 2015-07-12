@@ -7,18 +7,19 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! telop#stroverwrite(below, above, startidx) abort
-  let border  = strlen(a:above) + a:startidx
-  let overlen = a:startidx - strlen(a:below)
-
   let builder = []
-  if a:startidx > 0
+  if a:startidx == 0
+    call add(builder, a:above)
+    call add(builder, a:below[strlen(a:above) + a:startidx :])
+  elseif a:startidx > 0
     call add(builder, a:below[: a:startidx-1])
+    call add(builder, repeat(' ', a:startidx - strlen(a:below)))
+    call add(builder, a:above)
+    call add(builder, a:below[strlen(a:above) + a:startidx :])
+  elseif a:startidx < 0
+    call add(builder, a:above[-a:startidx :])
+    call add(builder, a:below[strlen(a:above) - strlen(a:below) + a:startidx :])
   endif
-  if overlen > 0
-    call add(builder, repeat(' ', overlen))
-  endif
-  call add(builder, a:above)
-  call add(builder, a:below[border :])
   return join(builder, '')
 endfunction
 
