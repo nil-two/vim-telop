@@ -10,7 +10,7 @@ function! telop#stroverwrite(below, above, startidx) abort
   let builder = []
   if a:startidx == 0
     call add(builder, a:above)
-    call add(builder, a:below[strlen(a:above) + a:startidx :])
+    call add(builder, a:below[strlen(a:above) :])
   elseif a:startidx > 0
     call add(builder, a:below[: a:startidx-1])
     call add(builder, repeat(' ', a:startidx - strlen(a:below)))
