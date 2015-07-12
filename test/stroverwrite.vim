@@ -31,11 +31,11 @@ endfunction
 
 function! s:suite.startidx_is_over_zero()
   let tests = [
-  \   ['abc',   'x',     1, 'axc'],
-  \   ['abc',   'x',     2, 'abx'],
-  \   ['abcde', 'xxx',   1, 'axxxe'],
-  \   ['abcde', 'xxx',   2, 'abxxx'],
-  \   ['abcde', 'xxx',   3, 'abcxxx'],
+  \   ['abc',   'x',   1, 'axc'],
+  \   ['abc',   'x',   2, 'abx'],
+  \   ['abcde', 'xxx', 1, 'axxxe'],
+  \   ['abcde', 'xxx', 2, 'abxxx'],
+  \   ['abcde', 'xxx', 3, 'abcxxx'],
   \   ['abcde', 'xxx',   4, 'abcdxxx'],
   \ ]
   for [below, above, startidx, dest] in tests
@@ -47,10 +47,10 @@ endfunction
 
 function! s:suite.startidx_is_over_length_of_below()
   let tests = [
-  \   ['abc',   'x',     3, 'abcx'],
-  \   ['abc',   'x',     5, 'abc  x'],
-  \   ['abcde', 'xxx',   5, 'abcdexxx'],
-  \   ['abcde', 'xxx',   9, 'abcde    xxx'],
+  \   ['abc',   'x',   3, 'abcx'],
+  \   ['abc',   'x',   5, 'abc  x'],
+  \   ['abcde', 'xxx', 5, 'abcdexxx'],
+  \   ['abcde', 'xxx', 9, 'abcde    xxx'],
   \ ]
   for [below, above, startidx, dest] in tests
     let expect = dest
