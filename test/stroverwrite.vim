@@ -58,3 +58,19 @@ function! s:suite.overstartidx()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:suite.underzerostartidx()
+  let tests = [
+  \   ['abc',   'x',   -1, 'abc'],
+  \   ['abc',   'x',   -2, 'abc'],
+  \   ['abcde', 'xxx', -1, 'xxcde'],
+  \   ['abcde', 'xxx', -2, 'xbcde'],
+  \   ['abcde', 'xxx', -3, 'abcde'],
+  \   ['abcde', 'xxx', -4, 'abcde'],
+  \ ]
+  for [below, above, startidx, dest] in tests
+    let expect = dest
+    let actual = telop#stroverwrite(below, above, startidx)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
