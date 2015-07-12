@@ -7,7 +7,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! telop#stroverwrite(below, above, startidx) abort
-  return 'xbc'
+  let border = strlen(a:above)
+  return a:above . a:below[border :]
 endfunction
 
 let &cpo = s:save_cpo
