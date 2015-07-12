@@ -14,3 +14,17 @@ function! s:suite.simple()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:suite.overlength()
+  let tests = [
+  \   ['abc',   'xxx',     0, 'xxx'],
+  \   ['abc',   'xxxxx',   0, 'xxxxx'],
+  \   ['abcde', 'xxxxx',   0, 'xxxxx'],
+  \   ['abcde', 'xxxxxxx', 0, 'xxxxxxx'],
+  \ ]
+  for [below, above, startidx, dest] in tests
+    let expect = dest
+    let actual = telop#stroverwrite(below, above, startidx)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
