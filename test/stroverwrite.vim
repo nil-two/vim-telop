@@ -1,7 +1,7 @@
 let s:suite = themis#suite('stroverwrite')
 let s:assert = themis#helper('assert')
 
-function! s:suite.simple()
+function! s:suite.normal()
   let tests = [
   \   ['abc',   'x',    0, 'xbc'],
   \   ['abc',   'xx',   0, 'xxc'],
@@ -15,7 +15,7 @@ function! s:suite.simple()
   endfor
 endfunction
 
-function! s:suite.overlength()
+function! s:suite.above_is_longer_than_below()
   let tests = [
   \   ['abc',   'xxx',     0, 'xxx'],
   \   ['abc',   'xxxxx',   0, 'xxxxx'],
@@ -29,7 +29,7 @@ function! s:suite.overlength()
   endfor
 endfunction
 
-function! s:suite.startidx()
+function! s:suite.startidx_is_over_zero()
   let tests = [
   \   ['abc',   'x',     1, 'axc'],
   \   ['abc',   'x',     2, 'abx'],
@@ -45,7 +45,7 @@ function! s:suite.startidx()
   endfor
 endfunction
 
-function! s:suite.overstartidx()
+function! s:suite.startidx_is_over_length_of_below()
   let tests = [
   \   ['abc',   'x',     3, 'abcx'],
   \   ['abc',   'x',     5, 'abc  x'],
@@ -59,7 +59,7 @@ function! s:suite.overstartidx()
   endfor
 endfunction
 
-function! s:suite.underzerostartidx()
+function! s:suite.startidx_is_under_zero()
   let tests = [
   \   ['abc',   'x',   -1, 'abc'],
   \   ['abc',   'x',   -2, 'abc'],
