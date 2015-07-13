@@ -17,7 +17,7 @@ function! s:suite.normal()
   endfor
 endfunction
 
-function! s:suite.over_len()
+function! s:suite.len_is_over_src_length()
   let tests = [
   \   ['abc',   0,  5, 'abc'],
   \   ['abc',   0, 10, 'abc'],
