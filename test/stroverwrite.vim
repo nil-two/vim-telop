@@ -36,7 +36,7 @@ function! s:suite.startidx_is_over_zero()
   \   ['abcde', 'xxx', 1, 'axxxe'],
   \   ['abcde', 'xxx', 2, 'abxxx'],
   \   ['abcde', 'xxx', 3, 'abcxxx'],
-  \   ['abcde', 'xxx',   4, 'abcdxxx'],
+  \   ['abcde', 'xxx', 4, 'abcdxxx'],
   \ ]
   for [below, above, startidx, dest] in tests
     let expect = dest
@@ -77,8 +77,8 @@ endfunction
 
 function! s:suite.all_over()
   let tests = [
-  \   ['abc',   'xxxxx', -1, 'xxxx'],
-  \   ['abc',   'xxxxx', -2, 'xxx'],
+  \   ['abc',   'xxxxx',     -1, 'xxxx'],
+  \   ['abc',   'xxxxx',     -2, 'xxx'],
   \   ['abcde', 'xxxxxxxxx', -3, 'xxxxxx'],
   \   ['abcde', 'xxxxxxxxx', -4, 'xxxxx'],
   \ ]
