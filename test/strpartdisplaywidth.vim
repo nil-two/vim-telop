@@ -1,7 +1,7 @@
-let s:suite = themis#suite('strpartdisplaywidth')
+let s:strpartdisplaywidth = themis#suite('strpartdisplaywidth')
 let s:assert = themis#helper('assert')
 
-function! s:suite.normal()
+function! s:strpartdisplaywidth.normal()
   let tests = [
   \   ['abc',   0, 0, ''],
   \   ['abc',   0, 1, 'a'],
@@ -17,7 +17,7 @@ function! s:suite.normal()
   endfor
 endfunction
 
-function! s:suite.len_is_over_src_length()
+function! s:strpartdisplaywidth.len_is_over_src_length()
   let tests = [
   \   ['abc',   0,  5, 'abc'],
   \   ['abc',   0, 10, 'abc'],
@@ -31,7 +31,7 @@ function! s:suite.len_is_over_src_length()
   endfor
 endfunction
 
-function! s:suite.start_over_zero()
+function! s:strpartdisplaywidth.start_over_zero()
   let tests = [
   \   ['abc',   1,  1, 'b'],
   \   ['abc',   1,  3, 'bc'],
@@ -45,7 +45,7 @@ function! s:suite.start_over_zero()
   endfor
 endfunction
 
-function! s:suite.start_under_zero()
+function! s:strpartdisplaywidth.start_under_zero()
   let tests = [
   \   ['abc', -1, 20, 'abc'],
   \   ['abc', -5, 20, 'abc'],
@@ -62,7 +62,7 @@ function! s:suite.start_under_zero()
   endfor
 endfunction
 
-function! s:suite.multi_byte_even_length()
+function! s:strpartdisplaywidth.multi_byte_even_length()
   let tests = [
   \   ['あいう',     0, 2,  'あ'],
   \   ['あいう',     0, 4,  'あい'],
