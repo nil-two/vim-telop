@@ -91,3 +91,26 @@ function! s:strpartdisplaywidth.multi_byte_odd_length()
   endfor
 endfunction
 
+function! s:strpartdisplaywidth.multi_byte_and_odd_start()
+  let tests = [
+  \   ['あいう',     1, 2,  '  '],
+  \   ['あいう',     1, 4,  ' い '],
+  \   ['あいう',     1, 8,  ' いう'],
+  \   ['あいう',     3, 2,  '  '],
+  \   ['あいう',     3, 4,  ' う'],
+  \   ['あいうえお', 1, 5,  ' いう'],
+  \   ['あいうえお', 1, 7,  ' いうえ'],
+  \   ['あいうえお', 1, 8,  ' いうえ '],
+  \   ['あいうえお', 1, 10, ' いうえお'],
+  \   ['あいうえお', 5, 2, '  '],
+  \   ['あいうえお', 5, 3, ' え'],
+  \   ['あいうえお', 5, 5, ' えお'],
+  \   ['あいうえお', 5, 6, ' えお'],
+  \ ]
+  for [src, start, len, dest] in tests
+    let expect = dest
+    let actual = telop#strpartdisplaywidth(src, start, len)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
+
