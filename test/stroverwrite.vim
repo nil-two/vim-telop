@@ -74,3 +74,17 @@ function! s:suite.startidx_is_under_zero()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:suite.all_over()
+  let tests = [
+  \   ['abc',   'xxxxx', -1, 'xxxx'],
+  \   ['abc',   'xxxxx', -2, 'xxx'],
+  \   ['abcde', 'xxxxxxxxx', -3, 'xxxxxx'],
+  \   ['abcde', 'xxxxxxxxx', -4, 'xxxxx'],
+  \ ]
+  for [below, above, startidx, dest] in tests
+    let expect = dest
+    let actual = telop#stroverwrite(below, above, startidx)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
