@@ -7,7 +7,20 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! telop#strpartdisplaywidth(src, start, len) abort
-  return strpart(a:src, a:start, a:len)
+  let width = a:start + a:len
+  let len_i = 0
+  let builder = []
+  for ch in split(a:src, '\zs')
+    let len_i += strdisplaywidth(ch)
+    if len_i <= a:start
+      continue
+    endif
+    if len_i > width
+      break
+    endif
+    call add(builder, ch)
+  endfor
+  return join(builder, '')
 endfunction
 
 function! telop#stroverwrite(below, above, startidx) abort
