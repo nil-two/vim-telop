@@ -21,7 +21,11 @@ function! telop#strpartdisplaywidth(src, start, len) abort
       endif
       break
     endif
-    call add(builder, ch)
+    if (len_i-a:start) == 1 && strdisplaywidth(ch) == 2
+      call add(builder, ' ')
+    else
+      call add(builder, ch)
+    endif
   endfor
   return join(builder, '')
 endfunction
