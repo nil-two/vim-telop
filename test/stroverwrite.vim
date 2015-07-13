@@ -92,15 +92,15 @@ endfunction
 function! s:suite.empty()
   let tests = [
   \   ['',    'x', -1, ''],
-  \   ['',    'x',  0, 'x'],
-  \   ['',    'x',  1, ' x'],
+  \   ['',    'x', 0,  'x'],
+  \   ['',    'x', 1,  ' x'],
   \   ['abc', '',  -1, 'abc'],
-  \   ['abc', '',   0, 'abc'],
-  \   ['abc', '',   1, 'abc'],
-  \   ['abc', '',   5, 'abc  '],
+  \   ['abc', '',  0,  'abc'],
+  \   ['abc', '',  1,  'abc'],
+  \   ['abc', '',  5,  'abc  '],
   \   ['',    '',  -1, ''],
-  \   ['',    '',   0, ''],
-  \   ['',    '',   1, ' '],
+  \   ['',    '',  0,  ''],
+  \   ['',    '',  1,  ' '],
   \ ]
   for [below, above, startidx, dest] in tests
     let expect = dest
