@@ -7,20 +7,20 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! telop#stroverwrite(below, above, startidx) abort
+  let overlen  = max([0, a:startidx - strlen(a:below)])
+  let underlen = max([0, 0 - a:startidx])
+
+  let lbeg = min([a:startidx, 0])
+  let lend = a:startidx
+  let rbeg = a:startidx + strlen(a:above)
+  let rend = max([strlen(a:below), rbeg])
+
   let builder = []
-  if a:startidx == 0
-    call add(builder, a:above)
-    call add(builder, a:below[strlen(a:above) :])
-  elseif a:startidx > 0
-    call add(builder, a:below[: a:startidx-1])
-    call add(builder, repeat(' ', a:startidx - strlen(a:below)))
-    call add(builder, a:above)
-    call add(builder, a:below[strlen(a:above) + a:startidx :])
-  elseif a:startidx < 0
-    call add(builder, a:above[-a:startidx :])
-    call add(builder, a:below[strlen(a:above) - strlen(a:below) + a:startidx :])
-  endif
-  return join(builder, '')
+  call add(builder, strpart(a:below, 0, lend - lbeg))
+  call add(builder, repeat(' ', overlen))
+  call add(builder, strpart(a:above, underlen, rbeg - lend))
+  call add(builder, strpart(a:below, rbeg, rend - rbeg))
+  return join(builder, "")
 endfunction
 
 let &cpo = s:save_cpo
