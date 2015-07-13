@@ -30,3 +30,20 @@ function! s:suite.over_len()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:suite.start_under_zero()
+  let tests = [
+  \   ['abc', -1, 20, 'abc'],
+  \   ['abc', -5, 20, 'abc'],
+  \   ['abc', -2, 0,  ''],
+  \   ['abc', -2, 2,  ''],
+  \   ['abc', -2, 3,  'a'],
+  \   ['abc', -2, 5,  'abc'],
+  \   ['abc', -2, 8,  'abc'],
+  \ ]
+  for [src, start, len, dest] in tests
+    let expect = dest
+    let actual = telop#strpartdisplaywidth(src, start, len)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
