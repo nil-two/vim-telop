@@ -31,6 +31,20 @@ function! s:suite.len_is_over_src_length()
   endfor
 endfunction
 
+function! s:suite.start_over_zero()
+  let tests = [
+  \   ['abc',   1,  1, 'b'],
+  \   ['abc',   1,  3, 'bc'],
+  \   ['abcde', 2,  1, 'c'],
+  \   ['abcde', 2,  5, 'cde'],
+  \ ]
+  for [src, start, len, dest] in tests
+    let expect = dest
+    let actual = telop#strpartdisplaywidth(src, start, len)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
+
 function! s:suite.start_under_zero()
   let tests = [
   \   ['abc', -1, 20, 'abc'],
