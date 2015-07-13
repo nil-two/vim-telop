@@ -7,15 +7,18 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! telop#strpartdisplaywidth(src, start, len) abort
-  let width = a:start + a:len
-  let len_i = 0
+  let last_i = a:start + a:len
+  let len_i  = 0
   let builder = []
   for ch in split(a:src, '\zs')
     let len_i += strdisplaywidth(ch)
     if len_i <= a:start
       continue
     endif
-    if len_i > width
+    if len_i > last_i
+      if (len_i-last_i) == 1 && strdisplaywidth(ch) == 2
+        call add(builder, ' ')
+      endif
       break
     endif
     call add(builder, ch)
