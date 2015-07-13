@@ -6,6 +6,10 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! telop#strpartdisplaywidth(src, start, len) abort
+  return strpart(a:src, a:start, a:len)
+endfunction
+
 function! telop#stroverwrite(below, above, startidx) abort
   let overlen  = max([0, a:startidx - strlen(a:below)])
   let underlen = max([0, 0 - a:startidx])
