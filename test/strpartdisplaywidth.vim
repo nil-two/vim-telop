@@ -61,3 +61,19 @@ function! s:suite.start_under_zero()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:suite.multi_byte_even_length()
+  let tests = [
+  \   ['あいう',     0, 2,  'あ'],
+  \   ['あいう',     0, 4,  'あい'],
+  \   ['あいう',     0, 8,  'あいう'],
+  \   ['あいうえお', 0, 8,  'あいうえ'],
+  \   ['あいうえお', 0, 16, 'あいうえお'],
+  \ ]
+  for [src, start, len, dest] in tests
+    let expect = dest
+    let actual = telop#strpartdisplaywidth(src, start, len)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
+
