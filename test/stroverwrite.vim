@@ -128,3 +128,36 @@ function! s:stroverwrite.multi_byte_simple()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:stroverwrite.multi_byte_and_start_over_zero()
+  let tests = [
+  \   ['abcde',      'あ',   1, 'aあde'],
+  \   ['abcde',      'あ',   2, 'abあe'],
+  \   ['abcde',      'あ',   3, 'abcあ'],
+  \   ['abcde',      'あ',   4, 'abcdあ'],
+  \   ['abcde',      'あ',   5, 'abcdeあ'],
+  \   ['あいう',     'a',    1, ' aいう'],
+  \   ['あいう',     'a',    2, 'あa う'],
+  \   ['あいう',     'a',    3, 'あ aう'],
+  \   ['あいう',     'a',    4, 'あいa '],
+  \   ['あいう',     'a',    5, 'あい a'],
+  \   ['あいう',     'a',    6, 'あいうa'],
+  \   ['あいう',     'a',    7, 'あいう a'],
+  \   ['あabいcdう', 'xん',  1, ' xんいcdう'],
+  \   ['あabいcdう', 'xん',  2, 'あxん cdう'],
+  \   ['あabいcdう', 'xん',  3, 'あaxんcdう'],
+  \   ['あabいcdう', 'xん',  4, 'あabxんdう'],
+  \   ['あabいcdう', 'xん',  5, 'あab xんう'],
+  \   ['あabいcdう', 'xん',  6, 'あabいxん '],
+  \   ['あabいcdう', 'xん',  7, 'あabいcxん'],
+  \   ['あabいcdう', 'xん',  8, 'あabいcdxん'],
+  \   ['あabいcdう', 'xん',  9, 'あabいcd xん'],
+  \   ['あabいcdう', 'xん', 10, 'あabいcdうxん'],
+  \   ['あabいcdう', 'xん', 11, 'あabいcdう xん'],
+  \ ]
+  for [below, above, startidx, dest] in tests
+    let expect = dest
+    let actual = telop#stroverwrite(below, above, startidx)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
