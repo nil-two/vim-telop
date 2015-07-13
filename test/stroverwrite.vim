@@ -108,3 +108,23 @@ function! s:stroverwrite.empty()
     call s:assert.equals(actual, expect)
   endfor
 endfunction
+
+function! s:stroverwrite.multi_byte_simple()
+  let tests = [
+  \   ['abcde',  'あ',      0, 'あcde'],
+  \   ['abcde',  'あい',    0, 'あいe'],
+  \   ['abcde',  'あいう',  0, 'あいう'],
+  \   ['あいう', 'a',       0, 'a いう'],
+  \   ['あいう', 'ab',      0, 'abいう'],
+  \   ['あいう', 'abc',     0, 'abc う'],
+  \   ['あいう', 'abcd',    0, 'abcdう'],
+  \   ['あいう', 'abcde',   0, 'abcde '],
+  \   ['あいう', 'abcdef',  0, 'abcdef'],
+  \   ['あいう', 'abcdefg', 0, 'abcdefg'],
+  \ ]
+  for [below, above, startidx, dest] in tests
+    let expect = dest
+    let actual = telop#stroverwrite(below, above, startidx)
+    call s:assert.equals(actual, expect)
+  endfor
+endfunction
