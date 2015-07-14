@@ -65,7 +65,7 @@ endfunction
 
 function! s:telop.make_line(start)
   let line = telop#stroverwrite(self.orig_line, self.message, a:start)
-  let suppressed_line = telop#strpartdisplaywidth(a, 0, winwidth(0))
+  let suppressed_line = telop#strpartdisplaywidth(line, 0, winwidth(0))
   return suppressed_line
 endfunction
 
