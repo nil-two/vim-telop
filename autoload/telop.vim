@@ -84,5 +84,10 @@ function! s:telop.flow()
   call setline(self.lnum, self.orig_line)
 endfunction
 
+function! telop#flow(message) abort
+  let t = s:new_telop(a:message)
+  call t.flow()
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
