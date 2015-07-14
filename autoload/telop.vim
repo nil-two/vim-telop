@@ -82,6 +82,7 @@ function! s:telop.flow() abort
     sleep 30ms
   endfor
   call setline(self.lnum, self.orig_line)
+  silent undo
 endfunction
 
 function! telop#flow(message) abort
