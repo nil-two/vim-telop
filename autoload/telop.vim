@@ -63,5 +63,11 @@ function! s:new_telop(message) abort
   return t
 endfunction
 
+function! s:telop.make_line(start)
+  let line = telop#stroverwrite(self.orig_line, self.message, a:start)
+  let suppressed_line = telop#strpartdisplaywidth(a, 0, winwidth(0))
+  return suppressed_line
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
