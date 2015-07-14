@@ -46,7 +46,7 @@ function! telop#stroverwrite(below, above, startidx) abort
   call add(builder, repeat(' ', overlen))
   call add(builder, telop#strpartdisplaywidth(a:above, underlen, rbeg - lend))
   call add(builder, telop#strpartdisplaywidth(a:below, rbeg, rend - rbeg))
-  return join(builder, "")
+  return join(builder, '')
 endfunction
 
 let s:telop = {
