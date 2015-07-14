@@ -55,5 +55,13 @@ let s:telop = {
 \   'message': '',
 \ }
 
+function! s:new_telop(message) abort
+  let t = deepcopy(s:telop)
+  let t.lnum = line('w0')
+  let t.orig_line = getline(t.lnum)
+  let t.message = a:message
+  return t
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
