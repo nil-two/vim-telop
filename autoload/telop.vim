@@ -69,5 +69,20 @@ function! s:telop.make_line(start)
   return suppressed_line
 endfunction
 
+function! s:telop.flow()
+  let leftend  = -strdisplaywidth(self.message)
+  let rightend = winwidth(0)
+
+  for col in reverse(range(leftend, rightend))
+    if getchar(1)
+      break
+    endif
+    call setline(self.lnum, self.make_line(col))
+    redraw
+    sleep 30ms
+  endfor
+  call setline(self.lnum, self.orig_line)
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
