@@ -63,13 +63,13 @@ function! s:new_telop(message) abort
   return t
 endfunction
 
-function! s:telop.make_line(start)
+function! s:telop.make_line(start) abort
   let line = telop#stroverwrite(self.orig_line, self.message, a:start)
   let suppressed_line = telop#strpartdisplaywidth(line, 0, winwidth(0))
   return suppressed_line
 endfunction
 
-function! s:telop.flow()
+function! s:telop.flow() abort
   let leftend  = -strdisplaywidth(self.message)
   let rightend = winwidth(0)
 
