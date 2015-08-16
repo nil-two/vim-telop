@@ -1,6 +1,6 @@
 " Show telop on your buffer
 " Version: 0.1.0
-" Author : wara <kusabashira227@gmail.com>
+" Author : kusabashira <kusabashira227@gmail.com>
 " License: MIT License
 
 let s:save_cpo = &cpo
