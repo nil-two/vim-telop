@@ -24,7 +24,7 @@ Requirements:
 - Vim 7.4 or later
 
 Latest version:
-https://github.com/nil2nekoni/vim-telop
+https://github.com/nil-two/vim-telop
 
 
 
